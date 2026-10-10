@@ -12,7 +12,7 @@ Open Neon's SQL Editor and execute [`db/postgres.sql`](db/postgres.sql). The scr
 
 In Vercel choose **Add New → Project → Import Git Repository**, then select `AhmadAmmar6546/academic-humanizer-pro` and branch `main`.
 
-Use **Next.js** as the framework, the repository root as Root Directory, and Node **22.x or 24.x**. `vercel.json` supplies the frozen pnpm installation and build commands. Do not select Vite or Cloudflare, and do not set `dist` as the output directory.
+Use **Next.js** as the framework, the repository root as Root Directory, and Node **22.x**. `vercel.json` supplies the frozen pnpm installation and build commands. Do not select Vite or Cloudflare, and do not set `dist` as the output directory.
 
 Add these in **Project Settings → Environment Variables** for Production (and separately for Preview if needed):
 

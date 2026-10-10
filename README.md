@@ -16,7 +16,7 @@ See [VERCEL.md](VERCEL.md) for import, database initialization, private login, A
 
 ## Setup
 
-Requires Node 22.13+ and pnpm 11.25.0. Run `pnpm install --frozen-lockfile`. Copy `.env.example` to ignored `.env.local` and supply your server-side values securely. Run `pnpm db:setup` once for a Neon database, then `pnpm dev` (local port 3000).
+Requires Node 22.x (22.13 or later) and pnpm 11.25.0. Run `pnpm install --frozen-lockfile`. Copy `.env.example` to ignored `.env.local` and supply your server-side values securely. Run `pnpm db:setup` once for a Neon database, then `pnpm dev` (local port 3000).
 
 `pnpm exec tsc --noEmit` checks types. `pnpm test` runs document, preservation, database-adapter and session tests. `pnpm build` builds Next.js; `pnpm start` serves the production build. Credentials are never included in the source export. Without authentication settings, the workspace stays locked; without AI configuration, editing returns 503 and retains the original text.
 
