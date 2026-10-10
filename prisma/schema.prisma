@@ -1,0 +1,24 @@
+// Standalone PostgreSQL target schema. Hosted Sites uses Drizzle/D1.
+// This schema is supplied for migration planning; no Prisma runtime adapter is wired.
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+model Revision {
+  id String @id @default(uuid())
+  owner String
+  title String
+  payload Json
+  created DateTime @default(now())
+  expires DateTime
+  @@index([owner, created])
+  @@index([expires])
+}
+model RateLimit {
+  key String @id
+  count Int
+  expires DateTime
+}

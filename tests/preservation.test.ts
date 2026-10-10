@@ -1,0 +1,6 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {mask,preserve,words} from '../lib/preservation';
+test('citations, percentages, years and expressions round-trip exactly',()=>{const text='Smith (2024) reports 92.5% accuracy [3, 4] with $x=2$ and (Ali et al., 2023).';const m=mask(text);assert.equal(m.restore(m.text),text);assert.ok(preserve(text,m.restore(m.text)));});
+test('missing and duplicate markers are rejected',()=>{const m=mask('The result is 25%.');assert.throws(()=>m.restore('The result is different.'));assert.throws(()=>m.restore(m.text+' ⟦KEEP_0⟧'));});
+test('invented or altered numeric claims fail validation',()=>{assert.equal(preserve('We observed 25 trials [2].','We observed 26 trials [2].'),false);assert.equal(preserve('We observed 25 trials [2].','We observed 25 trials [3].'),false);assert.equal(preserve('No numeric claim.','There were 4 trials.'),false);});
+test('legitimate prose edit preserves recognized facts',()=>assert.ok(preserve('A total of 30 drivers were enrolled (Ali, 2024).','The study enrolled 30 drivers (Ali, 2024).')));
+test('word counts handle blank and whitespace',()=>{assert.equal(words('  '),0);assert.equal(words('a\n b\tc'),3);});
